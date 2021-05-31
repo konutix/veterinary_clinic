@@ -149,7 +149,7 @@ $(document).ready(function() {
 </div><br>
 
 <footer class="container-fluid text-center">
-  <p>Kacper Kurowski, BOIVET 2018</p>
+  <p>Inżynieria Oprogramowania</p>
 </footer>
 
 </body>

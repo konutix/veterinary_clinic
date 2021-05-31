@@ -159,11 +159,6 @@ if (isset($_POST['adress'])) {
 
 </script>
 
-<div class="col-md-3" style="left: 5%; top: 5%; position: absolute; width: 27%">
-    <img src="img/logo.png" style="width: 100%">
-</div>
-
-
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -299,7 +294,7 @@ if (isset($_POST['adress'])) {
 </div><br>
 
 <footer class="container-fluid text-center">
-    <p>Kacper Kurowski, BOIVET 2018</p>
+    <p>Inżynieria Oprogramowania</p>
 </footer>
 
 </body>

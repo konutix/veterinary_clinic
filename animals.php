@@ -59,53 +59,6 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] == 'doctor'){
 
 </script>
 
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Kropki na karuzeli (bez nich nie działa) -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-
-    <!-- Zdjęcia na karuzele -->
-    <div class="carousel-inner" role="listbox">
-
-        <div class="item active">
-            <img src="img/karuzela1.jpg" alt="Image">
-            <div class="carousel-caption">
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="img/karuzela2.jpg" alt="Image">
-            <div class="carousel-caption">
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="img/karuzela3.jpg" alt="Image">
-            <div class="carousel-caption">
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="img/karuzela4.jpg" alt="Image">
-            <div class="carousel-caption">
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-<!-- logo -->
-<div class="col-md-3" style="left: 5%; top: 4%; position: absolute; width: 18%">
-    <img src="img/logo.png" style="width: 100%">
-</div>
-
-
 <!-- menu -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -265,7 +218,7 @@ END;
 </div><br>
 
 <footer class="container-fluid text-center">
-    <p>Kacper Kurowski, BOIVET 2018</p>
+    <p>Inżynieria Oprogramowania</p>
 </footer>
 
 <script>

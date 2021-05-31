@@ -49,52 +49,6 @@ session_start();
 
 </script>
 
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-
-
-    <div class="carousel-inner" role="listbox">
-
-        <div class="item active">
-            <img src="img/karuzela1.jpg" alt="Image">
-            <div class="carousel-caption">
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="img/karuzela2.jpg" alt="Image">
-            <div class="carousel-caption">
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="img/karuzela3.jpg" alt="Image">
-            <div class="carousel-caption">
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="img/karuzela4.jpg" alt="Image">
-            <div class="carousel-caption">
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-<div class="col-md-3" style="left: 5%; top: 4%; position: absolute; width: 18%">
-    <img src="img/logo.png" style="width: 100%">
-</div>
-
-
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -242,45 +196,12 @@ END;
             ?>
         </div>
         </div>
-        <div class="well">
-            <p class="big titel">PORADY</p>
-
-            <?php
-
-            require_once "connect.php";
-
-            $connection = new mysqli($host, $db_user, $db_password, $db_name);
-
-            if ($connection->connect_errno != 0) {
-                echo "Error: " . $connection->connect_errno . "Opis: " . $connection->connect_error;
-            } else {
-
-                if ($result = @$connection->query("SELECT * FROM articles ORDER BY 'date' DESC LIMIT 5")) {
-
-                    while ($row = $result->fetch_assoc()) {
-
-                        echo '<p class="left"> <img class="apic" src="'.$row['img'].'"></p>';
-                        echo '<p class="left">'.$row['title'].'</p>';
-                        echo '<p class="left">'.$row['date'].'</p>';
-                        echo '<p class="left">'.$row['content'].'</p>';
-                        echo '<div class="line" style="height: 5px;"></div><br>';
-
-                    }
-
-                    $result->free_result();
-
-                }
-
-                $connection->close();
-            }
-            ?>
-        </div>
     </div>
 </div>
 </div><br>
 
 <footer class="container-fluid text-center">
-    <p>Kacper Kurowski, BOIVET 2018</p>
+    <p>Inżynieria Oprogramowania</p>
 </footer>
 
 </body>
