@@ -66,7 +66,6 @@ if (isset($_POST['delete'])) {
     </style>
 </head>
 <body>
-<link rel="icon" href="logo.png">
 
 <script>
 

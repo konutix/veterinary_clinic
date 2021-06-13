@@ -42,7 +42,6 @@ session_start();
     </style>
 </head>
 <body>
-<link rel="icon" href="logo.png">
 
 <script>
 

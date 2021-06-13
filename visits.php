@@ -49,7 +49,6 @@ if(!isset($_SESSION['username'])){
     </style>
 </head>
 <body>
-<link rel="icon" href="logo.png">
 
 <script>
 

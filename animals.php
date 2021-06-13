@@ -48,7 +48,6 @@ if(!isset($_SESSION['username']) || $_SESSION['username'] == 'doctor'){
     </style>
 </head>
 <body>
-<link rel="icon" href="logo.png">
 
 <script>
 
