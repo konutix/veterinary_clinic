@@ -1,5 +1,5 @@
 <?php
-    include 'Registering.php';
+    include 'classes/includes.php';
 ?>
 <!DOCTYPE html>
 	<head>
