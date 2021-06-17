@@ -3,7 +3,9 @@
 ?>
 <!DOCTYPE html>
 	<head>
-		<meta charset="utf-8">
+            <meta charset="utf-8">
+            <title>Przychodnia</title>
+            <link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 	<?php
@@ -18,7 +20,7 @@
             $result = Registering::register($login, $passwd, $name, $surname, $email, $phone, $address);
             switch ($result){
                 case 0:
-                    header("Location: index1.php");
+                    header("Location: index.php");
                     break;
                 case 1:
                     print "Taki użytkownik już istnieje.";
@@ -49,8 +51,9 @@
 			</div>
                 
 			<div>
-				<input id="submit" type="submit" value="Zarejestruj">
+				<input class="redirBtn" type="submit" value="Zarejestruj">
 			</div>
 		</form>
+            <input type="button" value="Do logowania" class="redirBtn" onClick="document.location.href='./login.php'" />
 	</body>
 </html>

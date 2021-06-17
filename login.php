@@ -3,7 +3,9 @@
 ?>
 <!DOCTYPE html>
 	<head>
-		<meta charset="utf-8">
+            <meta charset="utf-8">
+            <title>Przychodnia</title>
+            <link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 	<?php
@@ -33,8 +35,9 @@
 				<label for="passwd">Hasło</label><input id="passwd" name="passwd" type="password" placeholder="Hasło">
 			</div>
 			<div>
-				<input id="submit" type="submit" value="Zaloguj">
+				<input class="redirBtn" type="submit" value="Zaloguj">
 			</div>
 		</form>
+            <input type="button" value="Do rejestracji" class="redirBtn" onClick="document.location.href='./register.php'" />
 	</body>
 </html>
