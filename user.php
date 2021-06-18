@@ -2,6 +2,11 @@
 include "./classes/includes.php";
 session_start();
 
+
+if($_SESSION["userID"]==null){
+    header("Location: ./login.php");
+}
+
 //zalogowany uzytkownik
 $user = new User($_SESSION['userID']);
 

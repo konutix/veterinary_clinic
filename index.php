@@ -23,7 +23,13 @@ include 'classes/includes.php';
 </head>
 <body>
 
-	<input type="button" value="Zwierzęta"  class="redirBtn" onClick="document.location.href='./zwierzeta.php'" />
+<?php
+    if ($_SESSION['access'] == "3") {
+        echo '<input type="button" value="Zwierzęta"  class="redirBtn" onClick="document.location.href=\'./zwierzeta.php\'" />';
+    }
+?>
+
+    <input type="button" value="Wizyty"  class="redirBtn" onClick="document.location.href='./wizyty.php'" />
 	<input type="button" value="Użytkownik" class="redirBtn" onClick="document.location.href='./user.php'" />
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input name="logut" type="checkbox" checked hidden/>

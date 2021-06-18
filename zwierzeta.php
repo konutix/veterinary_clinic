@@ -2,6 +2,10 @@
 	include 'classes/includes.php';
 	session_start();
 
+    if($_SESSION["userID"]==null){
+        header("Location: ./login.php");
+    }
+
 	//zalogowany użytkownik	
 	$cl = new Client($_SESSION['userID']);
 	
@@ -84,7 +88,7 @@
 
 	?>
 	
-	<div class="addAnimalDiv">
+	<div class="inputForm">
 		<h2>Dodaj / Edytuj zwierzę</h2>
 		
 		<form method="post" name="animalForm">
@@ -119,8 +123,8 @@
 
             <input type="hidden" name="animalEditId" value="">
 
-			<input class="addAnimalbutton" type="submit" value="Dodaj">
-            <input class="addAnimalbutton" onClick="return setEditedAnimalId()" type="submit" value="Edytuj"> <br>
+			<input class="inputFormButton" type="submit" value="Dodaj">
+            <input class="inputFormButton" onClick="return setEditedAnimalId()" type="submit" value="Edytuj"> <br>
 		</form>
 	</div>
 
