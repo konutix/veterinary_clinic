@@ -37,7 +37,6 @@ include 'classes/includes.php';
                     </form>";
             }
         }
-        
         ?>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input name="logut" type="checkbox" checked hidden/>
