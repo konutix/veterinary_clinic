@@ -24,7 +24,7 @@
 	</head>
 	<body>
 	<?php
-            $register = new ViewRegister();
+            $register = new RegisteringView();
             if($_SESSION["register"] == 1){
                 $register->showLogin();
             }else if($_SESSION["register"] == 0){

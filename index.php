@@ -28,7 +28,11 @@ include 'classes/includes.php';
 <body>
         <?php
         if($_SESSION["access"] != 1){
-            require "templates/userMenu.html.php";
+            if($_SESSION["access"] == 3){
+                require "templates/clientMenu.html.php";
+            }else if($_SESSION["access"] == 2){
+                require "templates/nonAdminMenu.html.php"; 
+            }
             if(isset($_SESSION["originalAccess"]) && $_SESSION["originalAccess"] == 1){
                 echo "
                     <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
@@ -36,6 +40,8 @@ include 'classes/includes.php';
                         <input type=\"submit\" value=\"Wróc na swoje konto\" class=\"redirBtn\"/>
                     </form>";
             }
+        }else{
+            require "templates/adminMenu.html.php"; 
         }
         ?>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

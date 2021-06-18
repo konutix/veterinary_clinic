@@ -1,7 +1,7 @@
 <?php
 include 'classes/includes.php';
 
-class ViewRegister extends Registering{
+class RegisteringView extends Registering{
     public function showLogin(){
         echo "
             <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
@@ -13,14 +13,7 @@ class ViewRegister extends Registering{
                             <td><label for=\"passwd\">Hasło</label></td><td><input id=\"passwd\" name=\"passwd\" type=\"password\" placeholder=\"Hasło\"></td>
                     </tr>
                     <input type=\"hidden\" name=\"action\" value=\"register\">
-                </table>
-                <input class=\"redirBtn\" type=\"submit\" value=\"Zaloguj\">
-            </form>
-            <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
-                <input name=\"register\" type=\"number\" value=0 hidden/>
-                <input type=\"hidden\" name=\"action\" value=\"change\">
-                <input type=\"submit\" value=\"Do rejestracji\" class=\"redirBtn\"/>
-            </form>";
+                </table>";
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "register") {
             $login = $_POST["login"];
             $passwd = hash('md5',$_POST["passwd"]);
@@ -30,13 +23,21 @@ class ViewRegister extends Registering{
                     header("Location: index.php");
                     break;
                 case 1:
-                    echo "Podano zły login";
+                    echo "<div>Podano zły login</div>";
                     break;
                 case 2:
-                    echo "Podano złe hasło";
+                    echo "<div>Podano złe hasło</div>";
                     break;
             }
         }
+        echo "<input class=\"redirBtn\" type=\"submit\" value=\"Zaloguj\">
+            </form>
+            <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
+                <input name=\"register\" type=\"number\" value=0 hidden/>
+                <input type=\"hidden\" name=\"action\" value=\"change\">
+                <input type=\"submit\" value=\"Do rejestracji\" class=\"redirBtn\"/>
+            </form>";
+        
     }
     public function showRegister(){
         echo "
@@ -63,14 +64,7 @@ class ViewRegister extends Registering{
                         <td><label for=\"address\">Adres</label></td><td><input id=\"address\" name=\"address\" type=\"text\" placeholder=\"Prosta 1\" required></td>
                     </tr>
                     <input type=\"hidden\" name=\"action\" value=\"register\">
-                </table>
-                <input class=\"redirBtn\" type=\"submit\" value=\"Zarejestruj\">
-            </form>
-            <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
-                <input name=\"register\" type=\"number\" value=1 hidden/>
-                <input type=\"hidden\" name=\"action\" value=\"change\">
-                <input type=\"submit\" value=\"Do logowania\" class=\"redirBtn\"/>
-            </form>";
+                </table>";
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "register") {
             $login = $_POST["login"];
             $passwd = $_POST["passwd"];
@@ -85,8 +79,16 @@ class ViewRegister extends Registering{
                     header("Location: index.php");
                     break;
                 case 1:
-                    print "Taki użytkownik już istnieje.";
+                    echo "<div>Taki użytkownik już istnieje.</div>";
             }
         }
+        echo"<input class=\"redirBtn\" type=\"submit\" value=\"Zarejestruj\">
+            </form>
+            <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
+                <input name=\"register\" type=\"number\" value=1 hidden/>
+                <input type=\"hidden\" name=\"action\" value=\"change\">
+                <input type=\"submit\" value=\"Do logowania\" class=\"redirBtn\"/>
+            </form>";
+        
     }
 }
