@@ -10,7 +10,7 @@ include 'classes/includes.php';
                 $_SESSION["originalAccess"] = null;
             }
         }
-        if($_SESSION["userID"]==null){
+        if(!isset($_SESSION["userID"])){
             header("Location: ./register.php");
         }
 ?>
@@ -29,7 +29,7 @@ include 'classes/includes.php';
         <?php
         if($_SESSION["access"] != 1){
             require "templates/userMenu.html.php";
-            if($_SESSION["originalAccess"] == 1){
+            if(isset($_SESSION["originalAccess"]) && $_SESSION["originalAccess"] == 1){
                 echo "
                     <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
                         <input name=\"back\" type=\"checkbox\" checked hidden/>

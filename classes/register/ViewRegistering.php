@@ -1,6 +1,6 @@
 <?php
 include 'classes/includes.php';
-session_start();
+
 class ViewRegister extends Registering{
     public function showLogin(){
         echo "

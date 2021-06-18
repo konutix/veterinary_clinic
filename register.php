@@ -1,7 +1,7 @@
 <?php
     include 'classes/includes.php';
     session_start();
-    if($_SESSION["userID"]!=null){
+    if(isset($_SESSION["userID"])){
         header("Location: ./index.php");
     }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,7 +11,7 @@
     }
     else
     {   
-        if($_SESSION["register"] == null){
+        if(!isset($_SESSION["register"])){
             $_SESSION["register"] = 1;
         }
     }

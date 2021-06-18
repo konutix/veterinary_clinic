@@ -2,8 +2,8 @@
 include 'classes/includes.php';
 session_start();
 
-if($_SESSION["userID"]==null){
-    header("Location: ./login.php");
+if(!isset($_SESSION["userID"])){
+    header("Location: ./register.php");
 }
 
 //zalogowany użytkownik
