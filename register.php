@@ -1,5 +1,20 @@
 <?php
     include 'classes/includes.php';
+    session_start();
+    if($_SESSION["userID"]!=null){
+        header("Location: ./index.php");
+    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if(isset($_POST["register"]) && $_POST["action"] = "change"){
+            $_SESSION["register"]=$_POST["register"];
+        }
+    }
+    else
+    {   
+        if($_SESSION["register"] == null){
+            $_SESSION["register"] = 1;
+        }
+    }
 ?>
 <!DOCTYPE html>
 	<head>
@@ -9,51 +24,12 @@
 	</head>
 	<body>
 	<?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $login = $_POST["login"];
-            $passwd = $_POST["passwd"];
-            $name = $_POST["name"];
-            $surname = $_POST["surname"];
-            $email = $_POST["email"];
-            $phone = $_POST["phone"];
-            $address = $_POST["address"];
-            $result = Registering::register($login, $passwd, $name, $surname, $email, $phone, $address);
-            switch ($result){
-                case 0:
-                    header("Location: index.php");
-                    break;
-                case 1:
-                    print "Taki użytkownik już istnieje.";
+            $register = new ViewRegister();
+            if($_SESSION["register"] == 1){
+                $register->showLogin();
+            }else if($_SESSION["register"] == 0){
+                $register->showRegister();
             }
-          }
         ?>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-			<div>
-				<label for="login">Login</label><input id="login" name="login" type="text" placeholder="Login" required>
-			</div>
-			<div>
-				<label for="passwd">Hasło</label><input id="passwd" name="passwd" type="password" placeholder="Hasło" required>
-			</div>
-                        <div>
-				<label for="name">Imię</label><input id="name" name="name" type="text" placeholder="Jan" required>
-			</div>
-			<div>
-				<label for="surname">Nazwisko</label><input id="surname" name="surname" type="text" placeholder="Kowalski" required>
-			</div>
-                        <div>
-				<label for="email">Email</label><input id="email" name="email" type="text" placeholder="nazwa@adres.com" required>
-			</div>
-			<div>
-				<label for="phone">Telefon</label><input id="phone" name="phone" type="text" placeholder="+48123456789" required>
-			</div>
-			<div>
-				<label for="address">Adres</label><input id="address" name="address" type="text" placeholder="Prosta 1" required>
-			</div>
-                
-			<div>
-				<input class="redirBtn" type="submit" value="Zarejestruj">
-			</div>
-		</form>
-            <input type="button" value="Do logowania" class="redirBtn" onClick="document.location.href='./login.php'" />
 	</body>
 </html>

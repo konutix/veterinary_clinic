@@ -15,7 +15,6 @@ class Registering{
                 $result = $db->query($query)->fetch();
                 $id = $result["ID"];
                 $access = $result["access"];
-                session_start();
                 $_SESSION['userID'] = $id;
                 $_SESSION['access'] = $access;
                 return 0;

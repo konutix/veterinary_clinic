@@ -5,9 +5,13 @@ include 'classes/includes.php';
             if($_POST["logut"]){
                 Registering::logout();
             }
+            if($_POST["back"]){
+                $_SESSION["access"] = $_SESSION["originalAccess"];
+                $_SESSION["originalAccess"] = null;
+            }
         }
         if($_SESSION["userID"]==null){
-            header("Location: ./login.php");
+            header("Location: ./register.php");
         }
 ?>
 
@@ -22,9 +26,19 @@ include 'classes/includes.php';
 
 </head>
 <body>
-
-	<input type="button" value="Zwierzęta"  class="redirBtn" onClick="document.location.href='./zwierzeta.php'" />
-	<input type="button" value="Użytkownik" class="redirBtn" onClick="document.location.href='./user.php'" />
+        <?php
+        if($_SESSION["access"] != 1){
+            require "templates/userMenu.html.php";
+            if($_SESSION["originalAccess"] == 1){
+                echo "
+                    <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
+                        <input name=\"back\" type=\"checkbox\" checked hidden/>
+                        <input type=\"submit\" value=\"Wróc na swoje konto\" class=\"redirBtn\"/>
+                    </form>";
+            }
+        }
+        
+        ?>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input name="logut" type="checkbox" checked hidden/>
             <input type="submit" value="Wyloguj" class="redirBtn"/>
