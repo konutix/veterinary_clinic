@@ -4,6 +4,10 @@ include_once './classes/dbconnect.php';
 include_once './classes/register/Registering.php';
 include_once './classes/register/RegisteringView.php';
 
+include_once './classes/admin/AdminController.php';
+include_once './classes/admin/AdminModel.php';
+include_once './classes/admin/AdminView.php';
+
 include_once './classes/animal/AnimalController.php';
 include_once './classes/animal/AnimalModel.php';
 include_once './classes/animal/AnimalView.php';

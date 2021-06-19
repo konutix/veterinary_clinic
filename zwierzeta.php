@@ -72,7 +72,7 @@
 	
 	<?php
 	
-	$av = new AnimalView($cl->getId());
+        $av = new AnimalView($cl->getId());
 	$av->showAnimals();
 
 	if (isset($_SESSION['animalAddSuccess'])) {

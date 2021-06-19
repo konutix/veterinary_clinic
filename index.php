@@ -7,7 +7,10 @@ include 'classes/includes.php';
             }
             if($_POST["back"]){
                 $_SESSION["access"] = $_SESSION["originalAccess"];
+                $_SESSION["userID"] = $_SESSION["originalID"];
                 $_SESSION["originalAccess"] = null;
+                $_SESSION["originalID"] = null;
+                header("Location: ./manage.php");
             }
         }
         if(!isset($_SESSION["userID"])){
