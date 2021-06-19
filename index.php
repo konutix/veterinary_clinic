@@ -1,6 +1,7 @@
 <?php
 include 'classes/includes.php';
 	session_start();
+        $_SESSION["accessType"]=null;
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($_POST["logut"]){
                 Registering::logout();
@@ -11,6 +12,10 @@ include 'classes/includes.php';
                 $_SESSION["originalAccess"] = null;
                 $_SESSION["originalID"] = null;
                 header("Location: ./manage.php");
+            }
+            if(isset($_POST["accessType"]) && $_SESSION["access"]==1){
+                $_SESSION["accessType"] = $_POST["accessType"];
+                header("Location: ./register.php");
             }
         }
         if(!isset($_SESSION["userID"])){

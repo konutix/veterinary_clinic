@@ -1,7 +1,7 @@
 <?php
     include 'classes/includes.php';
     session_start();
-    if(isset($_SESSION["userID"])){
+    if(isset($_SESSION["userID"]) && !isset($_SESSION["accessType"])){
         header("Location: ./index.php");
     }
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,7 +11,9 @@
     }
     else
     {   
-        if(!isset($_SESSION["register"])){
+        if(isset($_SESSION["accessType"])){
+            $_SESSION["register"] = 0;
+        }else if(!isset($_SESSION["register"])){
             $_SESSION["register"] = 1;
         }
     }
@@ -27,7 +29,7 @@
             $register = new RegisteringView();
             if($_SESSION["register"] == 1){
                 $register->showLogin();
-            }else if($_SESSION["register"] == 0){
+            }else if($_SESSION["register"] == 0 || isset($_SESSION["accessType"])){
                 $register->showRegister();
             }
         ?>

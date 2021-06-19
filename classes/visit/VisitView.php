@@ -26,16 +26,5 @@ class VisitView extends VisitModel {
         }
     }
 
-    public function showVisitTypes() {
-        $results = $this->getVisitTypes($this->userId);
-
-
-        echo '<table><tr><th>ID<th>Nazwa<th>Opis';
-        foreach ($results as $type) {
-            echo '<tr><td>' . $type['ID'] . '<td>' . $type['name'] . '<td>' . $type['description'];
-        }
-        echo '</table>';
-
-    }
 
 }

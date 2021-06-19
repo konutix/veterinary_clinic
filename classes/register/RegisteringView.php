@@ -67,13 +67,17 @@ class RegisteringView extends Registering{
                 </table>";
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["action"] == "register") {
             $login = $_POST["login"];
-            $passwd = $_POST["passwd"];
+            $passwd = hash('md5',$_POST["passwd"]);
             $name = $_POST["name"];
             $surname = $_POST["surname"];
             $email = $_POST["email"];
             $phone = $_POST["phone"];
             $address = $_POST["address"];
-            $result = $this->register($login, $passwd, $name, $surname, $email, $phone, $address);
+            $access = 3;
+            if(isset($_SESSION["accessType"])){
+                $access = $_SESSION["accessType"];
+            }
+            $result = $this->register($login, $passwd, $name, $surname, $email, $phone, $address, $access);
             switch ($result){
                 case 0:
                     header("Location: index.php");
@@ -83,12 +87,15 @@ class RegisteringView extends Registering{
             }
         }
         echo"<input class=\"redirBtn\" type=\"submit\" value=\"Zarejestruj\">
-            </form>
-            <form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
+            </form>";
+        if(!isset($_SESSION["accessType"])){
+            echo"<form method=\"post\" action=\"";echo htmlspecialchars($_SERVER["PHP_SELF"]);echo"\">
                 <input name=\"register\" type=\"number\" value=1 hidden/>
                 <input type=\"hidden\" name=\"action\" value=\"change\">
                 <input type=\"submit\" value=\"Do logowania\" class=\"redirBtn\"/>
             </form>";
-        
+        }else{
+            echo '<input type="button" value="Home" class="redirBtn" onClick="document.location.href=\'./index.php\'" />';
+        }
     }
 }

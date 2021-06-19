@@ -37,6 +37,7 @@ class AdminView extends AdminModel{
             $access = $control->accessToNumber($access);
             $search = $this->getSearch($login,$name,$surname,$access);
             $users=null;
+            echo"<div>";
             switch($control->validateSearch($search)){
                 case 0:
                     $users = $this->getUsers($search);
@@ -52,7 +53,7 @@ class AdminView extends AdminModel{
                     break;
             }
         }
-        echo"
+        echo"</div>
                 <input type=\"hidden\" name=\"action\" value=\"search\">
                 <input class=\"redirBtn\" type=\"submit\" value=\"Wyszukaj\">
             </form>";
