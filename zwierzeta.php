@@ -13,7 +13,7 @@
 		
 		$ac = new AnimalController();
 
-        if (isset($_POST['animalEditId'])) {
+        if ($_POST['animalEditId'] != null) {
             if ($ac->updateAnimal($_POST['animalEditId'], $_POST['name'], $_POST['specie'], $_POST['date'], $_POST['note'], $cl->getId())) {
                 $_SESSION['animalAddSuccess'] = "Pomyślnie edytowano zwierzę";
             }
