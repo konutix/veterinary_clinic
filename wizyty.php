@@ -6,14 +6,16 @@ if(!isset($_SESSION["userID"])){
     header("Location: ./register.php");
 }
 
+if($_SESSION['access'] == 2) {
+    header("Location: ./visitVet.php");
+}
+
 //zalogowany użytkownik
 $cl = new Client($_SESSION['userID']);
 
-$vc = new VisitController();
-
 if (isset($_POST['animalID'])) {
 
-    if ($vc->addVisit($_POST['date'],$_POST['animalID'], $_POST['type'], $cl->getId())) {
+    if ($cl->addVisit($_POST['date'],$_POST['animalID'], $_POST['type'])) {
         $_SESSION['visitAddSuccess'] = "Pomyślnie utworzono rezerwację";
     }
 
@@ -21,7 +23,7 @@ if (isset($_POST['animalID'])) {
     die();
 } else if (isset($_POST['newDate'])) {
 
-    if ($vc->changeVisitDate($_POST['visitID'], $_POST['newDate'], $cl->getId())) {
+    if ($cl->changeVisitDate($_POST['visitID'], $_POST['newDate'])) {
         $_SESSION['dateChangeSuccess'] = "Pomyślnie zmieniono datę wizyty";
     }
 
@@ -50,13 +52,11 @@ if (isset($_POST['animalID'])) {
 
 	<?php
 
-	$vv = new VisitView($cl->getId());
-
     echo '<h2>Umówione wizyty</h2>';
-	$vv->showVisits();
+	$cl->showVisits();
 
 	echo '<h2>Typy wizyt</h2>';
-	$vv->showVisitTypes();
+	$cl->showVisitTypes();
 
     if (isset($_SESSION['visitAddSuccess'])) {
         echo "<h3>" . $_SESSION['visitAddSuccess'] . "</h3>";

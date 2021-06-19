@@ -16,7 +16,7 @@ class VisitView extends VisitModel {
         $results = $this->getClientVisits($this->userId);
 
         if (empty($results)) {
-            echo "<h2>Brak zarezerwowanych wizyt</h2>";
+            echo "Brak zarezerwowanych wizyt<br><br>";
         } else {
             echo '<table><tr><th>ID<th>Nazwa<th>Data<th>Typ wizyty<th>Komentarz lekarza';
             foreach ($results as $visit) {

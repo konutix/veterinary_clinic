@@ -3,7 +3,7 @@ include_once './classes/includes.php';
 
 class User
 {
-    private $id;
+    protected $id;
     private $view;
     private $controller;
 
@@ -44,7 +44,41 @@ class User
 
 class Client extends User {
 
+    private $vc;
+    private $vv;
+
     public function __construct($id) {
         parent::__construct($id);
+
+        $this->vc = new VisitController();
+        $this->vv = new VisitView($id);
+    }
+
+    public function addVisit($date, $petId, $type) {
+        return $this->vc->addVisit($date, $petId, $type, $this->id);
+    }
+
+    public function changeVisitDate($visitId, $newDate) {
+        return $this->vc->changeVisitDate($visitId, $newDate, $this->id);
+    }
+
+    public function showVisits() {
+        $this->vv->showVisits();
+    }
+
+    public function showVisitTypes() {
+        $this->vv->showVisitTypes();
+    }
+}
+
+class Vet extends User {
+    private $vc;
+    private $vv;
+
+    public function __construct($id) {
+        parent::__construct($id);
+
+        $this->vc = new VisitController();
+        $this->vv = new VisitView($id);
     }
 }
