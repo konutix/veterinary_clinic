@@ -9,6 +9,25 @@ if(!isset($_SESSION["userID"])){
 //zalogowany użytkownik
 $cl = new Client($_SESSION['userID']);
 
+$vc = new VisitController();
+
+if (isset($_POST['animalID'])) {
+
+    if ($vc->addVisit($_POST['date'],$_POST['animalID'], $_POST['type'], $cl->getId())) {
+        $_SESSION['visitAddSuccess'] = "Pomyślnie utworzono rezerwację";
+    }
+
+    header('Location: ./wizyty.php');
+    die();
+} else if (isset($_POST['newDate'])) {
+
+    if ($vc->changeVisitDate($_POST['visitID'], $_POST['newDate'], $cl->getId())) {
+        $_SESSION['dateChangeSuccess'] = "Pomyślnie zmieniono datę wizyty";
+    }
+
+    header('Location: ./wizyty.php');
+    die();
+}
 
 ?>
 
@@ -27,25 +46,56 @@ $cl = new Client($_SESSION['userID']);
 
 <body>
 
+<input type="button" value="Home" class="redirBtn" onClick="document.location.href='./index.php'" /> <br><br>
+
 	<?php
 
 	$vv = new VisitView($cl->getId());
+
+    echo '<h2>Umówione wizyty</h2>';
 	$vv->showVisits();
+
+	echo '<h2>Typy wizyt</h2>';
+	$vv->showVisitTypes();
+
+    if (isset($_SESSION['visitAddSuccess'])) {
+        echo "<h3>" . $_SESSION['visitAddSuccess'] . "</h3>";
+        unset($_SESSION['visitAddSuccess']);
+    }
+
+    if (isset($_SESSION['dateChangeSuccess'])) {
+        echo "<h3>" . $_SESSION['dateChangeSuccess'] . "</h3>";
+        unset($_SESSION['dateChangeSuccess']);
+    }
 
 	?>
 
-        <br>//gdzieś pokazać listę typów
 
     <div class="inputForm">
         <h2>Rezerwacja wizyt</h2>
 
         <form method="post" name="newVisit">
             Zwierzę (ID): <br> <input type="text" name="animalID"> <br>
-
-            Data: <br> <input type="text" name="date"> <br>
-
+            <?php
+            if (isset($_SESSION['errAnimalID'])) {
+                echo '<div class="error">'.$_SESSION['errAnimalID'].'</div>';
+                unset($_SESSION['errAnimalID']);
+            }
+            ?>
+            Data: <br> <input type="datetime-local" name="date"> <br>
+            <?php
+            if (isset($_SESSION['errDate'])) {
+                echo '<div class="error">'.$_SESSION['errDate'].'</div>';
+                unset($_SESSION['errDate']);
+            }
+            ?>
             Typ (ID): <br> <input type="text" name="type"> <br>
-
+            <?php
+            if (isset($_SESSION['errTypeID'])) {
+                echo '<div class="error">'.$_SESSION['errTypeID'].'</div>';
+                unset($_SESSION['errTypeID']);
+            }
+            ?>
 
             <br> <input class="inputFormButton" type="submit" value="Utwórz">
         </form>
@@ -57,16 +107,25 @@ $cl = new Client($_SESSION['userID']);
 
         <form method="post" name="modifyVisitDate">
             ID wizyty: <br> <input type="text" name="visitID"> <br>
-
-            Nowa data: <br> <input type="text" name="newDate"> <br>
+            <?php
+            if (isset($_SESSION['errVisitID'])) {
+                echo '<div class="error">'.$_SESSION['errVisitID'].'</div>';
+                unset($_SESSION['errVisitID']);
+            }
+            ?>
+            Nowa data: <br> <input type="datetime-local" name="newDate"> <br>
+            <?php
+            if (isset($_SESSION['errNewDate'])) {
+                echo '<div class="error">'.$_SESSION['errNewDate'].'</div>';
+                unset($_SESSION['errNewDate']);
+            }
+            ?>
 
 
             <br> <input class="inputFormButton" type="submit" value="Zmień datę">
         </form>
     </div>
 
-
-<input type="button" value="Home" class="redirBtn" onClick="document.location.href='./index.php'" />
 
 </body>
 </html>
