@@ -16,7 +16,7 @@ class VisitView extends VisitModel {
         $results = $this->getClientVisits($this->userId);
 
         if (empty($results)) {
-            echo "<h2>Brak zarezerwowanych wizyt</h2>";
+            echo "Brak zarezerwowanych wizyt<br><br>";
         } else {
             echo '<table><tr><th>ID<th>Nazwa<th>Data<th>Typ wizyty<th>Komentarz lekarza';
             foreach ($results as $visit) {
@@ -26,5 +26,15 @@ class VisitView extends VisitModel {
         }
     }
 
+    public function showVisitTypes() {
+        $results = $this->getVisitTypes($this->userId);
 
+
+        echo '<table><tr><th>ID<th>Nazwa<th>Opis';
+        foreach ($results as $type) {
+            echo '<tr><td>' . $type['ID'] . '<td>' . $type['name'] . '<td>' . $type['description'];
+        }
+        echo '</table>';
+
+    }
 }
