@@ -65,13 +65,20 @@ class VisitView extends VisitModel {
         if (empty($results)) {
             echo "Brak zaakceptowanych wizyt<br><br>";
         } else {
-            echo '<table><tr><th>ID<th>Data<th>Nazwa<th>Gatunek<th>Typ wizyty<th> ';
+            echo '<table><tr><th>ID<th>Data<th>Nazwa<th>Gatunek<th>Typ wizyty<th> <th> ';
             foreach ($results as $visit) {
                 echo '<tr><td>' . $visit['ID'] . '<td>' . $visit['date'] . '<td>' . $visit['name'] . '<td>' . $visit['specie'] . '<td>' . $visit['type'];
-                echo '<form method="post" name="acceptVisit">';
-                echo '<input type="hidden" name="visitIDcancel" value="' . $visit['ID'] .'">';
-                echo '<td><input type="submit" value="Anuluj">';
-                echo '</form>';
+
+                echo '<form method="post" name="commentVisit">' .
+                     '<td><input type="text" name="visitComment" value="' . $visit['comment'] .'">' .
+                     '<input type="hidden" name="visitIDcomment" value="' . $visit['ID'] .'">' .
+                     '<input type="submit" value="Dodaj komentarz">' .
+                     '</form>';
+
+                echo '<form method="post" name="acceptVisit">' .
+                     '<input type="hidden" name="visitIDcancel" value="' . $visit['ID'] .'">' .
+                     '<td><input type="submit" value="Anuluj">' .
+                     '</form>';
             }
             echo '</table>';
         }

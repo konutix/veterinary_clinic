@@ -113,4 +113,8 @@ class Vet extends User {
     public function cancelVisit($visitId) {
         $this->vc->cancelVisit($visitId);
     }
+
+    public function commentVisit($visitId, $comment) {
+        $this->vc->commentVisit($visitId, $comment);
+    }
 }

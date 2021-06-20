@@ -26,6 +26,11 @@ if(isset($_POST['visitIDaccept'])) {
 
     header('Location: ./visitVet.php');
     die();
+} else if(isset($_POST['visitIDcomment'])) {
+    $vet->commentVisit($_POST['visitIDcomment'], $_POST['visitComment']);
+
+    header('Location: ./visitVet.php');
+    die();
 }
 
 ?>

@@ -89,4 +89,8 @@ class VisitController extends VisitModel {
             $_SESSION['errCancelVisit'] = "Nie można anulować wizyty";
         }
     }
+
+    public function commentVisit($visitId, $comment) {
+        $this->setVisitComment($visitId, $comment);
+    }
 } 
