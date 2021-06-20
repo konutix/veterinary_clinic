@@ -67,7 +67,7 @@ class Client extends User {
     }
 
     public function showVisits() {
-        $this->vv->showVisits();
+        $this->vv->showClientVisits();
     }
 
     public function showVisitTypes() {
@@ -96,5 +96,21 @@ class Vet extends User {
 
         $this->vc = new VisitController();
         $this->vv = new VisitView($id);
+    }
+
+    public function showAwaitingVisits() {
+        $this->vv->showAwaitingVisits();
+    }
+
+    public function showAcceptedVisits() {
+        $this->vv->showAcceptedVisits();
+    }
+
+    public function acceptVisit($visitID) {
+        $this->vc->acceptVisit($visitID, $this->id);
+    }
+
+    public function cancelVisit($visitId) {
+        $this->vc->cancelVisit($visitId);
     }
 }

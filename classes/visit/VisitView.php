@@ -11,7 +11,7 @@ class VisitView extends VisitModel {
         $this->userId = $userId;
     }
 
-    public function showVisits() {
+    public function showClientVisits() {
 
         $results = $this->getClientVisits($this->userId);
 
@@ -34,12 +34,46 @@ class VisitView extends VisitModel {
     public function showVisitTypes() {
         $results = $this->getVisitTypes($this->userId);
 
-
         echo '<table><tr><th>ID<th>Nazwa<th>Opis';
         foreach ($results as $type) {
             echo '<tr><td>' . $type['ID'] . '<td>' . $type['name'] . '<td>' . $type['description'];
         }
         echo '</table>';
+    }
 
+    public function showAwaitingVisits() {
+        $results = $this->getUnassignedVisits();
+
+        if (empty($results)) {
+            echo "Brak oczekujących wizyt<br><br>";
+        } else {
+            echo '<table><tr><th>ID<th>Data<th>Nazwa<th>Gatunek<th>Typ wizyty<th> ';
+            foreach ($results as $visit) {
+                echo '<tr><td>' . $visit['ID'] . '<td>' . $visit['date'] . '<td>' . $visit['name'] . '<td>' . $visit['specie'] . '<td>' . $visit['type'];
+                echo '<form method="post" name="acceptVisit">';
+                echo '<input type="hidden" name="visitIDaccept" value="' . $visit['ID'] .'">';
+                echo '<td><input type="submit" value="Akceptuj">';
+                echo '</form>';
+            }
+            echo '</table>';
+        }
+    }
+
+    public function showAcceptedVisits() {
+        $results = $this->getAcceptedVisits($this->userId);
+
+        if (empty($results)) {
+            echo "Brak zaakceptowanych wizyt<br><br>";
+        } else {
+            echo '<table><tr><th>ID<th>Data<th>Nazwa<th>Gatunek<th>Typ wizyty<th> ';
+            foreach ($results as $visit) {
+                echo '<tr><td>' . $visit['ID'] . '<td>' . $visit['date'] . '<td>' . $visit['name'] . '<td>' . $visit['specie'] . '<td>' . $visit['type'];
+                echo '<form method="post" name="acceptVisit">';
+                echo '<input type="hidden" name="visitIDcancel" value="' . $visit['ID'] .'">';
+                echo '<td><input type="submit" value="Anuluj">';
+                echo '</form>';
+            }
+            echo '</table>';
+        }
     }
 }

@@ -13,7 +13,20 @@ if($_SESSION['access'] == 3) {
 
 
 //zalogowany użytkownik
-$cl = new Vet($_SESSION['userID']);
+$vet = new Vet($_SESSION['userID']);
+
+
+if(isset($_POST['visitIDaccept'])) {
+    $vet->acceptVisit($_POST['visitIDaccept']);
+
+    header('Location: ./visitVet.php');
+    die();
+} else if(isset($_POST['visitIDcancel'])) {
+    $vet->cancelVisit($_POST['visitIDcancel']);
+
+    header('Location: ./visitVet.php');
+    die();
+}
 
 ?>
 
@@ -36,14 +49,29 @@ $cl = new Vet($_SESSION['userID']);
 
 <h2>Oczekujące wizyty</h2>
 
-tabela z przyciskami 'Akceptuj' <br>
-można zrobić wgląd w zwierzę    <br>
+<?php
+    $vet->showAwaitingVisits();
+
+?>
+
+   <br>
 
 
 <h2>Zaakceptowane wizyty</h2>
 
-tabela z możliwością komentowania <br>
-można zrobić wgląd w zwierzę      <br>
+
+<?php
+
+
+if (isset($_SESSION['errCancelVisit'])) {
+    echo '<div class="error">' . $_SESSION['errCancelVisit'] . '</div>';
+    unset($_SESSION['errCancelVisit']);
+}
+
+
+$vet->showAcceptedVisits();
+
+?>
 
 
 
