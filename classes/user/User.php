@@ -13,20 +13,16 @@ class User
         $this->id = $id;
     }
 
-    public function showCredentials() {
-        $this->view->showCredentials($this->id, FALSE);
+    public function showCredentials($message=NULL) {
+        $this->view->showCredentials($this->id, 0, $message);
     }
 
-    public function showCredentialsMessage($message) {
-        $this->view->showCredentials($this->id, FALSE, $message);
+    public function showChangePassword($message=NULL) {
+        $this->view->showCredentials($this->id, 1, $message);
     }
 
-    public function showChangePassword() {
-        $this->view->showCredentials($this->id, TRUE);
-    }
-
-    public function showChangePasswordMessage($message) {
-        $this->view->showCredentials($this->id, TRUE, $message);
+    public function showChangeData($message=NULL) {
+        $this->view->showCredentials($this->id, 2, $message);
     }
 
     public function getPasswordHash() {
@@ -35,6 +31,10 @@ class User
 
     public function changePassword($password) {
         $this->controller->updatePassword($this->id, $password);
+    }
+
+    public function changeData($name, $surname, $email, $phone, $address) {
+        $this->controller->updateData($this->id, $name, $surname, $email, $phone, $address);
     }
 
     public function getId() {

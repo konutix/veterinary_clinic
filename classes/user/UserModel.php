@@ -21,14 +21,6 @@ class UserModel extends DbConnect
         return $data;
     }
 
-    public function getEmail() {
-
-    }
-
-    public function getLogin() {
-
-    }
-
     public function setPassword($id, $hash) {
         $query = "update users set hash='".$hash."'WHERE id=".$id;
         $this->connect()->query($query);
@@ -39,6 +31,12 @@ class UserModel extends DbConnect
             return 1;
         }
 
+    }
+
+    public function setData($id, $name, $surname, $email, $phone, $address) {
+        $query = "update users set name='".$name."', surname='".$surname."', email='".$email.
+            "', phone='" .$phone. "', address='" .$address. "' WHERE id=".$id;
+        return $this->connect()->query($query);
     }
 
     public function getPassword($id) {

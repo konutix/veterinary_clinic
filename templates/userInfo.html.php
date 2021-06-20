@@ -25,6 +25,13 @@ echo '
                     <input class="password-button" type="submit" value="Zmień hasło"/>
                 </form>
             </td>
+            </tr>
+            <tr>
+            <td>
+                <form action="?action=showDataChange" method="post">
+                    <input class="data-button" type="submit" value="Zmień dane kontaktowe"/>
+                </form>
+            </td>
         </tr>';
 
 ?>

@@ -2,17 +2,21 @@
 <head>
     <title>Panel klienta</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link stylesheet="css/style.css"/>
 </head>
 
 <body>
 
 <style media="screen">
 
+
     * {
         alignment: center;
         background: #f5f5dc;
         font-family: Arial Black;
+    }
+
+    input {
+        width: 30%;
     }
 
 
@@ -31,15 +35,6 @@
     table {
         border: 5px solid #eDd8b1;
         width: 30%;
-    }
-
-    .password-button {
-        background: #fDe8c1;
-        width: 40%;
-    }
-
-    .password {
-        width: 40%;
     }
 
     .redirBtn {
