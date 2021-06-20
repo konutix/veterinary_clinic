@@ -1,7 +1,7 @@
 <?php
 include 'classes/includes.php';
 class Registering{
-    public static function login($login, $passwd){
+    public function login($login, $passwd){
         $db = new DbConnect();
         $id = 0;
         $access = 0;
@@ -28,7 +28,7 @@ class Registering{
             return 1;
         }
     }
-    public static function register($login, $passwd, $name, $surname, $email, $phone, $address, $access){
+    public function register($login, $passwd, $name, $surname, $email, $phone, $address, $access){
         $db = new DbConnect();
         $db->connect();
         $query = "SELECT login FROM users WHERE login = '".$login."' AND depracated = false;";
@@ -42,7 +42,7 @@ class Registering{
             return 1;
         }
     }
-    public static function logout(){
+    public function logout(){
         $_SESSION['userID'] = null;
         $_SESSION['access'] = null;
     }
