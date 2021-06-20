@@ -31,6 +31,11 @@ if (isset($_POST['animalID'])) {
 
     header('Location: ./wizyty.php');
     die();
+} else if(isset($_POST['visitIDcancel'])) {
+    $cl->cancelVisit($_POST['visitIDcancel']);
+
+    header('Location: ./wizyty.php');
+    die();
 }
 
 ?>
@@ -55,6 +60,13 @@ if (isset($_POST['animalID'])) {
 	<?php
 
     echo '<h2>Umówione wizyty</h2>';
+
+    if (isset($_SESSION['errCancelVisit'])) {
+        echo '<div class="error">' . $_SESSION['errCancelVisit'] . '</div>';
+        unset($_SESSION['errCancelVisit']);
+    }
+
+
 	$cl->showVisits();
 
 	echo '<h2>Typy wizyt</h2>';
