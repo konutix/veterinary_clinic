@@ -42,7 +42,7 @@ class Registering{
             return 1;
         }
     }
-    public function logout(){
+    public static function logout(){
         $_SESSION['userID'] = null;
         $_SESSION['access'] = null;
     }
