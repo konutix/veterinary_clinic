@@ -26,6 +26,27 @@ class VisitModel extends DbConnect {
 
         return $statement->fetchAll();
     }
+
+    protected function getUnassignedVisits() {
+        $query = "SELECT A.ID, `date`, P.name, specie, T.name type FROM appointments A
+                  JOIN pets P ON A.pet_id=P.ID JOIN `appointment type` T ON A.type=T.ID WHERE doctor_id=0 ORDER BY A.ID";
+        $statement = $this->connect()->query($query);
+
+        return $statement->fetchAll();
+    }
+
+    protected function getAcceptedVisits($vetID) {
+        $query = "SELECT A.ID, `date`, P.name, specie, T.name type FROM appointments A
+                  JOIN pets P ON A.pet_id=P.ID JOIN `appointment type` T ON A.type=T.ID WHERE doctor_id=" . $vetID;
+        $statement = $this->connect()->query($query);
+
+        return $statement->fetchAll();
+    }
+
+    protected function assignVetToVisit($visitId, $vetId) {
+        $query = "UPDATE appointments SET `doctor_id`=" . $vetId . " WHERE ID=" . $visitId;
+        $statement = $this->connect()->query($query);
+    }
     
     protected function addNewVisit($date, $petId, $type, $clientId) {
         $query = "INSERT INTO appointments (`date`, `pet_id`, `type`) 

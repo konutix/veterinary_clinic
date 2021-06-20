@@ -76,4 +76,17 @@ class VisitController extends VisitModel {
         return false;
     }
 
+    public function acceptVisit($visitId, $vetId) {
+        $this->assignVetToVisit($visitId, $vetId);
+    }
+
+    public function cancelVisit($visitId) {
+
+        $visitDate = ($this->getDate($visitId)['date']);
+        if ($this->validateDatetime($visitDate)) {
+            $this->assignVetToVisit($visitId, 0);
+        } else {
+            $_SESSION['errCancelVisit'] = "Nie można anulować wizyty";
+        }
+    }
 } 
