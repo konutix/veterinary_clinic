@@ -45,7 +45,17 @@ if(isset($_POST['visitIDaccept'])) {
 
     <link rel="stylesheet" href="style.css">
 
+<script>
+    function popupClientInfo(visitId) {
+        var popup = document.getElementById("clPopup" + visitId);
+        popup.classList.toggle("show");
+    }
 
+    function popupAnimalInfo(visitId) {
+        var popup = document.getElementById("anPopup" + visitId);
+        popup.classList.toggle("show");
+    }
+</script>
 </head>
 
 <body>

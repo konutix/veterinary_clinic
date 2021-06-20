@@ -85,6 +85,10 @@ class Client extends User {
     public function showAnimals() {
         $this->av->showAnimals();
     }
+
+    public function cancelVisit($visitId) {
+        $this->vc->cancelVisit($visitId, TRUE);
+    }
 }
 
 class Vet extends User {

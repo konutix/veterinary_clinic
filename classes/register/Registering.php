@@ -45,5 +45,6 @@ class Registering{
     public static function logout(){
         $_SESSION['userID'] = null;
         $_SESSION['access'] = null;
+        $_SESSION['register'] = null;
     }
 }
