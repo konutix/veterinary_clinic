@@ -18,9 +18,14 @@ class VisitView extends VisitModel {
         if (empty($results)) {
             echo "Brak zarezerwowanych wizyt<br><br>";
         } else {
-            echo '<table><tr><th>ID<th>Nazwa<th>Data<th>Typ wizyty<th>Komentarz lekarza';
+            echo '<table><tr><th>ID<th>Nazwa<th>Data<th>Typ wizyty<th>Komentarz lekarza<th>Akceptacja';
             foreach ($results as $visit) {
                 echo '<tr><td>' . $visit['ID'] . '<td>' . $visit['name'] . '<td>' . $visit['date'] . '<td>' . $visit['type'] . '<td>' . $visit['comment'];
+                if ($visit['doctor_id'] > 0) {
+                    echo '<td><input type="checkbox" checked disabled>';
+                } else {
+                    echo '<td><input type="checkbox" disabled>';
+                }
             }
             echo '</table>';
         }

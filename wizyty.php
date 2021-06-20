@@ -72,8 +72,6 @@ if (isset($_POST['animalID'])) {
 
 	?>
 
-        <br>//gdzieś pokazać listę typów
-
     <div class="inputForm">
         <h2>Rezerwacja wizyt</h2>
 

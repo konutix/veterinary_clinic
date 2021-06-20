@@ -46,12 +46,16 @@ class Client extends User {
 
     private $vc;
     private $vv;
+    private $ac;
+    private $av;
 
     public function __construct($id) {
         parent::__construct($id);
 
         $this->vc = new VisitController();
         $this->vv = new VisitView($id);
+        $this->ac = new AnimalController();
+        $this->av = new AnimalView($id);
     }
 
     public function addVisit($date, $petId, $type) {
@@ -68,6 +72,18 @@ class Client extends User {
 
     public function showVisitTypes() {
         $this->vv->showVisitTypes();
+    }
+
+    public function addAnimal($name, $specie, $date, $note) {
+        return $this->ac->addAnimal($name, $specie, $date, $note, $this->id);
+    }
+
+    public function updateAnimal($animalId, $name, $specie, $date, $note) {
+        return $this->ac->updateAnimal($animalId, $name, $specie, $date, $note, $this->id);
+    }
+
+    public function showAnimals() {
+        $this->av->showAnimals();
     }
 }
 

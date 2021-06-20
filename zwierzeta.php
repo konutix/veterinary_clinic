@@ -12,15 +12,13 @@
 	$cl = new Client($_SESSION['userID']);
 	
 	if (isset($_POST['name'])) {
-		
-		$ac = new AnimalController();
 
         if ($_POST['animalEditId'] != null) {
-            if ($ac->updateAnimal($_POST['animalEditId'], $_POST['name'], $_POST['specie'], $_POST['date'], $_POST['note'], $cl->getId())) {
+            if ($cl->updateAnimal($_POST['animalEditId'], $_POST['name'], $_POST['specie'], $_POST['date'], $_POST['note'])) {
                 $_SESSION['animalAddSuccess'] = "Pomyślnie edytowano zwierzę";
             }
         } else {
-            if ($ac->addAnimal($_POST['name'], $_POST['specie'], $_POST['date'], $_POST['note'], $cl->getId())) {
+            if ($cl->addAnimal($_POST['name'], $_POST['specie'], $_POST['date'], $_POST['note'])) {
                 $_SESSION['animalAddSuccess'] = "Pomyślnie dodano zwierzę";
             }
         }
@@ -73,9 +71,8 @@
 <body>
 	
 	<?php
-	
-        $av = new AnimalView($cl->getId());
-	$av->showAnimals();
+
+	$cl->showAnimals();
 
 	if (isset($_SESSION['animalAddSuccess'])) {
 		echo "<h3>" . $_SESSION['animalAddSuccess'] . "</h3>";

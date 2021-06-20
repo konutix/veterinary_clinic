@@ -1,6 +1,7 @@
 <?php
 include 'classes/includes.php';
 session_start();
+$_SESSION["accessType"]=null;
 
 if(!isset($_SESSION["userID"])){
     header("Location: ./register.php");
