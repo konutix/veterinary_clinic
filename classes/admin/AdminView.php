@@ -43,13 +43,13 @@ class AdminView extends AdminModel{
                     $users = $this->getUsers($search);
                     break;
                 case 1:
-                    echo"Login powinien zawierac od 3 do 35 znaków";
+                    echo"Login może zawierać od 2 do 35 liter lub cyfr, bez znaków specjalnych i spacji.";
                     break;
                 case 2:
-                    echo"Imię powinno zawierac od 3 do 35 znaków";
+                    echo"Imię może zawierać od 2 do 35 liter, bez znaków specjalnych i spacji.";
                     break;
                 case 3:
-                    echo"Nazwisko powinno zawierac od 3 do 50 znaków";
+                    echo"Nazwisko może zawierać od 2 do 50 liter, z opcjonalnym myślnikiem.";
                     break;
             }
         }
@@ -61,7 +61,7 @@ class AdminView extends AdminModel{
             echo"
                 <table>
                     <tr>
-                        <td>ID</td><td>login</td><td>Imię</td><td>Nazwisko</td><td>Typ użytkownika</td><td>Modyfikuj użytkownika</td><td>Usuń użytkownika</td>
+                        <td>ID</td><td>Login</td><td>Imię</td><td>Nazwisko</td><td>Typ użytkownika</td><td>Modyfikuj użytkownika</td><td>Usuń użytkownika</td>
                     <tr>";
             for($i=0; $i<count($users);$i++){
                 echo"

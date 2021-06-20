@@ -80,16 +80,16 @@ class RegisteringView extends Registering{
             $rc = new RegisteringController();
             switch($rc->registerValidate($login,$_POST["passwd"],$name,$surname,$email,$phone,$address)){
                 case 1:
-                    echo "<div>Login może zawierać od 2 do 35 liter i cyfr bez znaków specjalnych i spacji.</div>";
+                    echo "<div>Login może zawierać od 2 do 35 liter lub cyfr, bez znaków specjalnych i spacji.</div>";
                     break;
                 case 2:
                     echo "<div>Hasło powinno zawierać minimum 4 znaki (litery, cyfry, znaki specjalne)</div>";
                     break;
                 case 3:
-                    echo "<div>Imię może zawierać od 2 do 35 liter bez znaków specjalnych i spacji.</div>";
+                    echo "<div>Imię może zawierać od 2 do 35 liter, bez znaków specjalnych i spacji.</div>";
                     break;
                 case 4:
-                    echo "<div>Nazwisko może zawierać od 2 do 50 liter z opcjonalnym myślnikiem.</div>";
+                    echo "<div>Nazwisko może zawierać od 2 do 50 liter, z opcjonalnym myślnikiem.</div>";
                     break;
                 case 5:
                     echo "<div>To nie jest poprawny adres email.</div>";
@@ -104,6 +104,7 @@ class RegisteringView extends Registering{
                     $result = $this->register($login, $passwd, $name, $surname, $email, $phone, $address, $access);
                     switch ($result){
                         case 0:
+                            $_SESSION["register"] = 1;
                             header("Location: index.php");
                             break;
                         case 1:
