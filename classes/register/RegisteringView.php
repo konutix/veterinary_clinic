@@ -77,14 +77,42 @@ class RegisteringView extends Registering{
             if(isset($_SESSION["accessType"])){
                 $access = $_SESSION["accessType"];
             }
-            $result = $this->register($login, $passwd, $name, $surname, $email, $phone, $address, $access);
-            switch ($result){
-                case 0:
-                    header("Location: index.php");
-                    break;
+            $rc = new RegisteringController();
+            switch($rc->registerValidate($login,$_POST["passwd"],$name,$surname,$email,$phone,$address)){
                 case 1:
-                    echo "<div>Taki użytkownik już istnieje.</div>";
+                    echo "<div>Login może zawierać od 2 do 35 liter i cyfr bez znaków specjalnych i spacji.</div>";
+                    break;
+                case 2:
+                    echo "<div>Hasło powinno zawierać minimum 4 znaki (litery, cyfry, znaki specjalne)</div>";
+                    break;
+                case 3:
+                    echo "<div>Imię może zawierać od 2 do 35 liter bez znaków specjalnych i spacji.</div>";
+                    break;
+                case 4:
+                    echo "<div>Nazwisko może zawierać od 2 do 50 liter z opcjonalnym myślnikiem.</div>";
+                    break;
+                case 5:
+                    echo "<div>To nie jest poprawny adres email.</div>";
+                    break;
+                case 6:
+                    echo "<div>Numer telefonu powinien rozpoczynać się od znaku '+', następnie 2 cyfry kierunkowe i 9 cyfr numeru telefonu.</div>";
+                    break;
+                case 7:
+                    echo "<div>Adres powinien składać się z liter, myślinka bądź kropki.</div>";
+                    break;
+                case 0:
+                    $result = $this->register($login, $passwd, $name, $surname, $email, $phone, $address, $access);
+                    switch ($result){
+                        case 0:
+                            header("Location: index.php");
+                            break;
+                        case 1:
+                            echo "<div>Taki użytkownik już istnieje.</div>";
+                            break;
+                    }
+                    break;
             }
+            
         }
         echo"<input class=\"redirBtn\" type=\"submit\" value=\"Zarejestruj\">
             </form>";
